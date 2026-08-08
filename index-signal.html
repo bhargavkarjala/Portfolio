@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bhargav Karjala, Digital Marketing</title>
+<meta name="description" content="Bhargav Karjala, digital marketing executive. Content, SEO, paid ads, email and e-commerce strategy engineered for attention.">
+<meta name="theme-color" content="#07080C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07080C;
+    --void-soft:#0D0F16;
+    --panel: rgba(255,255,255,0.045);
+    --panel-hover: rgba(255,255,255,0.075);
+    --border: rgba(255,255,255,0.10);
+    --border-hover: rgba(255,255,255,0.22);
+    --mist:#F5F6F8;
+    --muted: rgba(245,246,248,0.56);
+    --muted-dim: rgba(245,246,248,0.36);
+    --violet:#8C7CF7;
+    --violet-dim: rgba(140,124,247,0.35);
+    --cyan:#49D6C8;
+    --cyan-dim: rgba(73,214,200,0.35);
+    --amber:#F2B155;
+    --field-bg:#13233B;
+    --field-border: rgba(255,255,255,0.09);
+    --on-accent:#07131A;
+    --logo-filter: grayscale(1) brightness(2.2);
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --max: 1200px;
+    --edge: clamp(20px, 5vw, 64px);
+  }
+
+  html[data-theme="light"]{
+    --void:#F4F1E9;
+    --void-soft:#EAE6D9;
+    --panel: rgba(20,20,25,0.045);
+    --panel-hover: rgba(20,20,25,0.08);
+    --border: rgba(20,20,25,0.12);
+    --border-hover: rgba(20,20,25,0.26);
+    --mist:#15181D;
+    --muted: rgba(21,24,29,0.64);
+    --muted-dim: rgba(21,24,29,0.42);
+    --violet:#6C58D6;
+    --violet-dim: rgba(108,88,214,0.28);
+    --cyan:#1C8F82;
+    --cyan-dim: rgba(28,143,130,0.28);
+    --field-bg:#E7EBF1;
+    --field-border: rgba(20,20,25,0.10);
+    --on-accent:#FFFFFF;
+    --logo-filter: grayscale(1) brightness(0.25);
+  }
+
+  html{ transition: background-color .35s ease; }
+  body{ transition: background-color .35s ease, color .35s ease; }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--void);
+    color: var(--mist);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding-left:var(--edge); padding-right:var(--edge); position:relative; z-index:2;}
+  h1,h2,h3{font-family:var(--font-display); letter-spacing:-0.01em; font-weight:600;}
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--violet);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--violet); box-shadow:0 0 10px var(--violet); }
+
+  .btn{
+    font-family: var(--font-body); font-weight:600; font-size:14.5px;
+    padding:15px 28px; border-radius:100px;
+    display:inline-flex; align-items:center; gap:9px;
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .btn-primary{ background: var(--mist); color:var(--void); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,246,248,0.18); }
+  .btn-ghost{ border:1px solid var(--border); color:var(--mist); }
+  .btn-ghost:hover{ border-color: var(--violet-dim); background: var(--panel-hover); transform: translateY(-2px); }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* subtle grain */
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== PRELOADER ===== */
+  #preloader{
+    position:fixed; inset:0; z-index:200;
+    background: var(--void);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:26px;
+    transition: opacity .7s ease, visibility .7s ease;
+  }
+  #preloader.hidden{ opacity:0; visibility:hidden; }
+  .pre-mark{ font-family: var(--font-display); font-size:15px; letter-spacing:.06em; color: var(--muted); }
+  .pre-status{ font-family: var(--font-mono); font-size:12.5px; color: var(--muted); min-height:16px; letter-spacing:.02em; }
+  .pre-bar{ width:220px; height:1px; background: var(--border); position:relative; overflow:hidden; }
+  .pre-bar-fill{ position:absolute; left:0; top:0; height:100%; width:0%; background: linear-gradient(90deg, var(--violet), var(--cyan)); transition: width .35s ease; }
+
+  /* ===== HEADER ===== */
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    padding: 22px 0;
+    transition: background .3s ease, backdrop-filter .3s ease, border-color .3s ease, padding .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.topbar.scrolled{
+    background: rgba(7,8,12,0.72);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--border);
+    padding: 14px 0;
+  }
+  .topbar-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family: var(--font-display); font-weight:600; font-size:17px; }
+  .brand .dot{ color: var(--violet); }
+  nav.primary-nav ul{ display:flex; gap:30px; }
+  nav.primary-nav a{ font-family: var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); transition: color .2s ease; }
+  nav.primary-nav a:hover{ color: var(--mist); }
+  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .theme-toggle{
+    width:36px; height:36px; border-radius:50%; flex-shrink:0;
+    background: var(--panel); border:1px solid var(--border); color: var(--mist);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--cyan-dim); background: var(--panel-hover); transform: translateY(-2px); }
+  .theme-toggle svg{ width:16px; height:16px; }
+  .btn-resume{
+    font-family: var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color: var(--void); background: var(--cyan);
+    padding:10px 18px; border-radius:100px; display:inline-flex; align-items:center; gap:6px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-resume:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(73,214,200,0.25); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--border); color:var(--mist); font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; padding:9px 15px; border-radius:100px; cursor:pointer; }
+  #mobileNav{
+    position:absolute; top:100%; left:0; right:0;
+    background: rgba(7,8,12,0.98); backdrop-filter: blur(20px);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+  }
+  #mobileNav a{ font-family: var(--font-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color: var(--mist); }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:center;
+    position:relative; overflow:hidden; padding-top:110px; padding-bottom:60px;
+  }
+  .orb{ position:absolute; border-radius:50%; filter: blur(90px); pointer-events:none; will-change: transform; }
+  .orb-1{ width:520px; height:520px; background: radial-gradient(circle, var(--violet-dim), transparent 70%); top:-140px; right:-80px; animation: float1 14s ease-in-out infinite; }
+  .orb-2{ width:400px; height:400px; background: radial-gradient(circle, var(--cyan-dim), transparent 70%); bottom:-120px; left:-60px; animation: float2 18s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(-40px, 40px) scale(1.08);} }
+  @keyframes float2{ 0%,100%{ transform: translate(0,0) scale(1);} 50%{ transform: translate(30px, -30px) scale(1.05);} }
+
+  .hero-inner{ opacity:0; transform: translateY(28px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
+  .hero-inner.in{ opacity:1; transform:none; }
+
+  @keyframes pulse-dot{ 0%,100%{ opacity:1;} 50%{ opacity:.35;} }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 5.6rem);
+    line-height:1.02; font-weight:600; max-width:17ch;
+  }
+  .hero h1 .accent{
+    background: linear-gradient(100deg, var(--violet), var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{ margin-top:28px; font-size: clamp(1.05rem,1.6vw,1.22rem); color:var(--muted); max-width:46ch; }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-top:44px; }
+
+  /* client logo grid */
+  #clients{ padding-top:70px; padding-bottom:70px; border-bottom:1px solid var(--border); }
+  .logo-marquee{
+    margin-top:36px; overflow:hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .logo-track{ display:flex; width:max-content; gap:14px; animation: logo-scroll 28s linear infinite; }
+  @keyframes logo-scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  .logo-marquee:hover .logo-track{ animation-play-state:paused; }
+  .logo-plate{
+    background: var(--panel); border:1px solid var(--border); border-radius:14px;
+    height:104px; width:220px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; padding:18px;
+    transition: border-color .25s ease, background .25s ease, transform .25s ease;
+  }
+  .logo-plate:hover{ border-color: var(--border-hover); background: var(--panel-hover); transform: translateY(-3px); }
+  .logo-plate img{ max-height:34px; width:auto; filter: var(--logo-filter); opacity:.75; transition: opacity .25s ease, filter .25s ease; }
+  .logo-plate:hover img{ opacity:1; filter:none; }
+  .logo-fallback{
+    display:none; align-items:center; justify-content:center; text-align:center;
+    font-family: var(--font-display); font-weight:600; font-size:1.05rem; letter-spacing:-0.01em; color: var(--mist);
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section{ padding: clamp(90px,12vw,150px) 0; position:relative; }
+  .sec-head h2{ font-size: clamp(1.9rem,3.4vw,2.8rem); font-weight:600; margin-top:16px; max-width:16ch; }
+  .sec-head p{ color:var(--muted); margin-top:16px; max-width:48ch; font-size:1rem; }
+
+  /* ===== THESIS ===== */
+  .thesis-panel{
+    background: var(--panel); border:1px solid var(--border); border-radius:24px;
+    padding: clamp(36px,5vw,64px);
+    position:relative; overflow:hidden;
+  }
+  .thesis-panel::before{
+    content:""; position:absolute; top:-1px; left:5%; right:5%; height:1px;
+    background: linear-gradient(90deg, transparent, var(--violet), var(--cyan), transparent);
+  }
+  .thesis-grid{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:60px; }
+  .thesis-quote{
+    font-family: var(--font-display); font-weight:500; font-style:normal;
+    font-size: clamp(1.35rem,2.1vw,1.8rem); line-height:1.32; margin-top:22px;
+  }
+  .thesis-body p{ color:var(--muted); margin-bottom:18px; font-size:1rem; }
+  .thesis-body p:last-child{ margin-bottom:0; }
+  .thesis-body strong{ color:var(--mist); font-weight:600; }
+
+  /* ===== CAPABILITIES / BENTO ===== */
+  .cap-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin-top:50px; }
+  .cap-tile{
+    background: var(--panel); border:1px solid var(--border); border-radius:18px;
+    padding:26px; min-height:180px; display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+    transition: border-color .3s ease, background .3s ease, transform .3s ease;
+  }
+  .cap-tile::before{
+    content:""; position:absolute; top:0; left:14px; right:14px; height:1px;
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+    opacity:0; transition: opacity .3s ease;
+  }
+  .cap-tile:hover{ border-color: var(--border-hover); background: var(--panel-hover); transform: translateY(-3px); }
+  .cap-tile:hover::before{ opacity:1; }
+  .cap-tile.wide{ grid-column: span 2; }
+  .cap-sym{ font-family: var(--font-mono); font-size:11.5px; color: var(--cyan); letter-spacing:.03em; }
+  .cap-name{ font-family: var(--font-display); font-size:1.1rem; font-weight:600; margin-top:22px; }
+  .cap-desc{ font-size:0.87rem; color:var(--muted); margin-top:8px; line-height:1.5; }
+
+  /* ===== WORK ===== */
+  .work-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px; margin-top:50px; }
+  .work-card{
+    background: var(--panel); border:1px solid var(--border); border-radius:18px;
+    padding:30px; display:flex; flex-direction:column; gap:18px; min-height:230px;
+    position:relative; overflow:hidden;
+    transition: border-color .3s ease, transform .3s ease, background .3s ease;
+  }
+  .work-card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:2px;
+  }
+  .work-card.has-return::before{ background: linear-gradient(90deg, var(--cyan), transparent 80%); }
+  .work-card:not(.has-return)::before{ background: linear-gradient(90deg, var(--violet-dim), transparent 80%); }
+  .work-card:hover{ border-color: var(--border-hover); background: var(--panel-hover); transform: translateY(-4px); }
+  .work-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+  .work-badge{
+    width:44px; height:44px; border-radius:10px; background: rgba(255,255,255,0.06); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:11px; font-weight:700; color:var(--mist); flex-shrink:0;
+  }
+  .work-name{ font-family: var(--font-display); font-size:1.22rem; font-weight:600; }
+  .work-sector{ font-family: var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color: var(--muted-dim); margin-top:4px; }
+  .work-return{
+    font-family: var(--font-mono); font-size:11.5px; color: var(--cyan);
+    background: rgba(73,214,200,0.08); border:1px solid var(--cyan-dim);
+    padding:6px 12px; border-radius:100px; white-space:nowrap;
+  }
+  .work-desc{ color:var(--muted); font-size:0.9rem; line-height:1.55; flex-grow:1; }
+
+  /* ===== ARSENAL ===== */
+  .arsenal{ border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:44px 0; }
+  .arsenal-inner{ display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+  .arsenal-label{ font-family: var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted-dim); }
+  .arsenal-tags{ display:flex; gap:10px; flex-wrap:wrap; }
+  .arsenal-tags span{ font-family:var(--font-mono); font-size:12px; color:var(--mist); border:1px solid var(--border); padding:8px 15px; border-radius:100px; }
+
+  /* ===== CONTACT ===== */
+  .contact-form{ display:flex; flex-direction:column; gap:22px; max-width:600px; margin-top:46px; }
+  .field label{
+    display:block; font-family: var(--font-mono); font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color: var(--cyan); margin-bottom:10px;
+  }
+  .field input, .field textarea{
+    width:100%; background: var(--field-bg); border:1px solid var(--field-border); border-radius:14px;
+    padding:16px 18px; font-family: var(--font-body); font-size:15px; color: var(--mist); resize:none;
+    transition: border-color .2s ease;
+  }
+  .field textarea{ min-height:130px; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color: var(--cyan); }
+  .btn-send{ background: var(--cyan); color: var(--on-accent); align-self:flex-start; border-radius:14px; font-weight:700; }
+  .btn-send:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(73,214,200,0.25); }
+  .form-note{ font-family: var(--font-mono); font-size:11.5px; color: var(--muted-dim); margin-top:-8px; }
+  .contact-extra-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; }
+
+  /* ===== FOOTER ===== */
+  footer{ border-top:1px solid var(--border); padding:32px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-inner p{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
+  .footer-links{ display:flex; gap:22px; }
+  .footer-links a{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
+  .footer-links a:hover{ color: var(--mist); }
+
+  .social-row{ display:flex; align-items:center; gap:24px; margin-top:26px; flex-wrap:wrap; }
+  .social-icon{
+    width:41px; height:41px; border-radius:50%; flex-shrink:0;
+    background: rgba(255,255,255,0.07); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--mist);
+    transition: border-color .2s ease, background .2s ease, transform .2s ease, color .2s ease;
+  }
+  a.social-icon:hover{ border-color: var(--cyan-dim); background: rgba(73,214,200,0.12); transform: translateY(-2px); color: var(--cyan); }
+  .social-icon svg{ width:20px; height:20px; }
+  .social-icon.inactive{ opacity:.48; cursor:default; }
+  .social-fixed{ display:flex; gap:14px; flex-shrink:0; }
+  .social-marquee{
+    overflow:hidden; width:195px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  }
+  .social-track{ display:flex; gap:14px; width:max-content; animation: social-scroll 10s linear infinite; }
+  @keyframes social-scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  .social-marquee:hover .social-track{ animation-play-state:paused; }
+
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--cyan); outline-offset:3px; }
+
+  @media (max-width: 940px){
+    nav.primary-nav{ display:none; }
+    .nav-toggle{ display:inline-block; }
+    .thesis-grid{ grid-template-columns:1fr; gap:32px; }
+    .cap-grid{ grid-template-columns: repeat(2,1fr); }
+    .cap-tile.wide{ grid-column: span 2; }
+    .work-grid{ grid-template-columns:1fr; }
+    .logo-plate{ width:180px; height:90px; }
+  }
+  @media (max-width: 560px){
+    .cap-grid{ grid-template-columns: 1fr; }
+    .cap-tile.wide{ grid-column: span 1; }
+    .hero-ctas .btn, .contact-extra-ctas .btn{ width:100%; justify-content:center; }
+    .logo-plate{ width:150px; height:80px; }
+    .btn-resume{ padding:9px 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .orb{ animation:none !important; }
+    .social-track{ animation:none !important; }
+    .logo-track{ animation:none !important; }
+    .reveal, .hero-inner{ opacity:1 !important; transform:none !important; transition:none !important; }
+    #preloader{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div id="preloader">
+  <div class="pre-mark">BHARGAV KARJALA</div>
+  <div class="pre-status" id="preStatus">Calibrating reach…</div>
+  <div class="pre-bar"><div class="pre-bar-fill" id="preFill"></div></div>
+</div>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#home">Bhargav Karjala<span class="dot">.</span></a>
+    <nav class="primary-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#holdings">Capabilities</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle light / dark mode"></button>
+      <a class="btn-resume" href="./Bhargav-Karjala-Resume.pdf" download>Resume</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+    </div>
+  </div>
+  <nav id="mobileNav" style="display:none;">
+    <ul class="wrap" style="display:flex; flex-direction:column; gap:18px; padding-top:22px; padding-bottom:24px;">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#holdings">Capabilities</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="orb orb-1" id="orb1"></div>
+  <div class="orb orb-2" id="orb2"></div>
+  <div class="wrap hero-inner" id="heroInner">
+    <h1>Attention is earned.<br>I build the <span class="accent">system</span> that earns it.</h1>
+    <p class="hero-sub">Content, SEO, paid media and email systems for brands that refuse to blend into the feed. Two years, fifteen-plus brands, one throughline, results you can actually measure.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">See the work →</a>
+      <a href="#contact" class="btn btn-ghost" id="heroStartProject">Start a project</a>
+    </div>
+  </div>
+</section>
+
+<section id="clients">
+  <div class="wrap">
+    <div class="eyebrow reveal">Trusted By</div>
+    <h2 class="reveal" style="margin-top:16px; font-size:clamp(1.7rem,2.8vw,2.3rem); max-width:none;">Brands across three continents</h2>
+    <div class="logo-marquee reveal">
+      <div class="logo-track" id="logoGrid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="about">
+  <div class="wrap">
+    <div class="eyebrow">The Thesis</div>
+    <div class="thesis-panel" style="margin-top:24px;">
+      <div class="thesis-grid">
+        <div>
+          <h2 style="font-size:clamp(1.7rem,2.8vw,2.3rem);">The strategy behind the growth</h2>
+          <p class="thesis-quote">"I don't just market, I architect digital presence."</p>
+        </div>
+        <div class="thesis-body">
+          <p>My work sits at the intersection of data and human psychology, the two forces that turn a brand story into something people actually act on.</p>
+          <p>From managing social for <strong>PI Health Sciences</strong> to running technical SEO for <strong>Dabur</strong> across the UAE, the throughline stays the same: precision analytics paired with content that doesn't read like marketing.</p>
+          <p>Email systems for heritage brands like <strong>Beretta Gallery</strong>, organic authority built on LinkedIn, every touchpoint engineered for conversion and community, not just clicks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="holdings">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Capabilities</div>
+      <h2>Every channel, one system</h2>
+      <p>Ten disciplines run as one strategy, the full stack of tools it takes to scale a brand in an ever-evolving feed.</p>
+    </div>
+    <div class="cap-grid reveal" id="capGrid"></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Selected Work</div>
+      <h2>Real brands, real returns</h2>
+      <p>Where a campaign produced a measured lift, it's shown as a return. Where the engagement was scope-of-work, it's shown as-is, no invented numbers.</p>
+    </div>
+    <div class="work-grid reveal" id="workGrid"></div>
+  </div>
+</section>
+
+<section class="arsenal">
+  <div class="wrap arsenal-inner">
+    <span class="arsenal-label">The Digital Arsenal</span>
+    <div class="arsenal-tags" id="arsenalTags"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 style="font-size:clamp(2.1rem,4vw,3.2rem); max-width:18ch;">Let's build something that gets noticed</h2>
+
+      <form class="contact-form" id="contactForm">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-send">Send message</button>
+        <p class="form-note" id="formNote"></p>
+      </form>
+
+      <div class="contact-extra-ctas">
+        <a href="#contact" id="startProjectBtn" class="btn btn-ghost">Start a project</a>
+        <a href="https://www.linkedin.com/in/bhargavkarjala" target="_blank" rel="noopener" class="btn btn-ghost">Connect on LinkedIn</a>
+        <a href="./Bhargav-Karjala-Resume.pdf" download class="btn btn-ghost">Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <p>© 2026 Bhargav Karjala. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="./Bhargav-Karjala-Resume.pdf" download>Resume</a>
+      </div>
+    </div>
+    <div class="social-row">
+      <div class="social-fixed" id="socialFixed"></div>
+      <div class="social-marquee">
+        <div class="social-track" id="socialTrack"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- FORM NOTE (shuffled, one per visit) ----------
+  const formNotes = [
+    "Just opens your email app, no carrier pigeons, no smoke signals, no awkward small talk.",
+    "This opens your inbox, not a portal to another dimension. Probably.",
+    "No forms are harmed in the sending of this message. It just opens Mail.",
+    "Fires up your email client. Faster than finding a matching sock.",
+    "Opens your email app. Slower than ghosting, faster than a group chat reply.",
+    "This just pings your inbox. No sign-up, no spam, no surprise subscription.",
+    "Sends you to your email app. Consider it a gentle nudge, not a shove.",
+    "Opens your mail client. Like tapping a friend on the shoulder, but digital.",
+    "No servers were guilt-tripped into sending this. It just opens Mail.",
+    "Warning: mildly opens your email app. Side effects may include replying.",
+  ];
+  document.getElementById('formNote').textContent = formNotes[Math.floor(Math.random() * formNotes.length)];
+
+  // ---------- THEME TOGGLE (dark / light, no persistence, resets each visit) ----------
+  const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="6.6" y2="6.6"/><line x1="17.4" y1="17.4" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.6" y2="17.4"/><line x1="17.4" y1="6.6" x2="19.1" y2="4.9"/></svg>`;
+  const moonIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5z"/></svg>`;
+  const themeToggle = document.getElementById('themeToggle');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const themeColors = { dark: '#07080C', light: '#F4F1E9' };
+  let currentTheme = 'dark';
+
+  function applyTheme(theme){
+    currentTheme = theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    themeToggle.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+    if (metaTheme) metaTheme.setAttribute('content', themeColors[theme]);
+  }
+  applyTheme('dark');
+  themeToggle.addEventListener('click', () => applyTheme(currentTheme === 'dark' ? 'light' : 'dark'));
+
+  // ---------- DATA ----------
+  const capabilities = [
+    { sym:'01 · SEO', name:'SEO, AEO & GEO', desc:'Technical SEO, AI-ready content, keyword research and local optimization that compound over time.', wide:true },
+    { sym:'02 · CONTENT', name:'Content Strategy & Writing', desc:'Built around what an audience actually searches for and shares, planned, written, shipped on schedule.' },
+    { sym:'03 · COPY', name:'Copywriting', desc:'Copy that sells without shouting, tuned to the brand\u2019s real voice.' },
+    { sym:'04 · SOCIAL', name:'Social Media Management', desc:'Calendars, community and creative run end to end across every platform that matters.' },
+    { sym:'05 · ADS', name:'Meta & Google Ads', desc:'Paid campaigns built on real targeting and testing, budget spent where it returns.' },
+    { sym:'06 · EMAIL', name:'Email Marketing', desc:'Sequences that turn a list into a channel, welcome flows, promos, retention that converts.', wide:true },
+    { sym:'07 · SITE', name:'Website Management', desc:'Updates, fixes and structure that make a site easy to grow.' },
+    { sym:'08 · SHOP', name:'E-commerce', desc:'Listings, promotions and campaigns tuned for one job: turning browsers into buyers.' },
+    { sym:'09 · VISUAL', name:'Visual Storytelling', desc:'Imagery and video built to stop the scroll and carry the story without words.' },
+    { sym:'10 · DATA', name:'Analytics & Reporting', desc:'Platform data turned into decisions, not just dashboards.' },
+  ];
+
+  const work = [
+    { badge:'PI', name:'PI Industries', sector:'Agrochemical & Specialty Chemicals', desc:'SEO for one of India\u2019s agrochemical majors, keyword strategy and on-page work to grow organic reach.', ret:null },
+    { badge:'PI', name:'PI Health Sciences', sector:'Healthcare & Life Sciences', desc:'SEO, website content creation and social media management for PI\u2019s healthcare arm.', ret:'↑ 140% engagement' },
+    { badge:'DI', name:'Dabur International', sector:'FMCG / Consumer Health', desc:'SEO across all UAE regions, 500+ product pages optimized for the marketplace.', ret:'Top-3 rankings' },
+    { badge:'CZ', name:'Cohizon', sector:'Biopharmaceutical', desc:'Website content created end to end, written to be SEO-friendly throughout.', ret:null },
+    { badge:'BG', name:'Beretta Gallery', sector:'Luxury Retail', desc:'Klaviyo email automation and e-commerce, including backend product assortment and inventory.', ret:'↑ 22% repeat purchase' },
+    { badge:'45R', name:'45R', sector:'Heritage Denim, Japan', desc:'E-commerce management, product assortment and inventory handled in the backend.', ret:null },
+    { badge:'BR', name:'Britannia', sector:'FMCG', desc:'SEO optimization support, content, keywords and on-page search visibility.', ret:null },
+  ];
+
+  const arsenal = ['LinkedIn','Canva','Klaviyo','GA4','Meta Suite','ChatGPT','Notion','Excel'];
+  const clients = [
+    { name:'PI Industries', file:'pi-industries' },
+    { name:'PI Health Sciences', file:'pi-health-sciences' },
+    { name:'Dabur International', file:'dabur-international' },
+    { name:'Cohizon', file:'cohizon' },
+    { name:'Beretta Gallery', file:'beretta-gallery' },
+    { name:'45R', file:'45r' },
+    { name:'Britannia', file:'britannia' },
+    { name:'Luxeveda Brand Tech', file:'luxeveda' },
+  ];
+
+  // ---------- RENDER ----------
+  document.getElementById('capGrid').innerHTML = capabilities.map(c => `
+    <div class="cap-tile${c.wide ? ' wide' : ''}">
+      <span class="cap-sym">${c.sym}</span>
+      <div>
+        <div class="cap-name">${c.name}</div>
+        <div class="cap-desc">${c.desc}</div>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('logoGrid').innerHTML = [...clients, ...clients].map(c => `
+    <div class="logo-plate">
+      <img src="./assets/logos/${c.file}.svg" alt="${c.name}" loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span class="logo-fallback">${c.name}</span>
+    </div>`).join('');
+
+  document.getElementById('workGrid').innerHTML = work.map(w => `
+    <div class="work-card${w.ret ? ' has-return' : ''}">
+      <div class="work-top">
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div class="work-badge">${w.badge}</div>
+          <div>
+            <div class="work-name">${w.name}</div>
+            <div class="work-sector">${w.sector}</div>
+          </div>
+        </div>
+        ${w.ret ? `<div class="work-return">${w.ret}</div>` : ''}
+      </div>
+      <div class="work-desc">${w.desc}</div>
+    </div>`).join('');
+
+  document.getElementById('arsenalTags').innerHTML = arsenal.map(a => `<span>${a}</span>`).join('');
+
+  // ---------- SOCIAL ICONS (hand-built inline SVG, no external font/image dependency) ----------
+  const ICONS = {
+    email: `<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,6 12,13 21,6"/>`,
+    linkedin: `<rect x="3" y="3" width="18" height="18" rx="4"/><text x="12" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">in</text>`,
+    youtube: `<rect x="3" y="5" width="18" height="14" rx="4"/><polygon points="10,8.5 16,12 10,15.5" fill="currentColor" stroke="none"/>`,
+    instagram: `<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.5" cy="7.5" r="1" fill="currentColor" stroke="none"/>`,
+    x: `<line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>`,
+    threads: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">@</text>`,
+    snapchat: `<circle cx="12" cy="12" r="9"/><text x="12" y="15.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">SC</text>`,
+    pinterest: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">P</text>`,
+    discord: `<rect x="4" y="7" width="16" height="10" rx="5"/><circle cx="9" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.3" fill="currentColor" stroke="none"/>`,
+    steam: `<circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="15" r="2.3"/><circle cx="15" cy="9" r="1.8"/><line x1="11.2" y1="13.3" x2="13.7" y2="10.6"/>`,
+    reddit: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">r/</text>`,
+    quora: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" font-style="italic" fill="currentColor" stroke="none" font-family="Georgia,serif">Q</text>`,
+    tiktok: `<circle cx="9" cy="17" r="2.2" fill="currentColor" stroke="none"/><line x1="11.2" y1="17" x2="11.2" y2="6"/><line x1="11.2" y1="6" x2="16" y2="7.5"/>`,
+    whatsapp: `<rect x="4" y="5" width="16" height="11" rx="5"/><polygon points="8,16 8,20 12,16" fill="currentColor" stroke="none"/>`,
+    facebook: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">f</text>`,
+    wechat: `<circle cx="9" cy="10" r="5"/><circle cx="16" cy="14" r="4"/>`,
+    telegram: `<polygon points="3,11 21,4 14,21 11,13" fill="currentColor" stroke="none"/>`,
+  };
+
+  function svgIcon(name){
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
+  }
+
+  const fixedSocials = [
+    { icon:'email', label:'Email', href:'mailto:bhargav8517@gmail.com' },
+    { icon:'linkedin', label:'LinkedIn', href:'https://www.linkedin.com/in/bhargavkarjala' },
+    { icon:'youtube', label:'YouTube', href:'https://youtu.be/xvFZjo5PgG0?si=GQvfrEdTyDG48UNg' },
+  ];
+
+  const dynamicSocials = [
+    { icon:'instagram', label:'Instagram', href:'https://www.instagram.com/p/CGh4a0iASGS/' },
+    { icon:'x', label:'X', href:'https://x.com/home' },
+    { icon:'threads', label:'Threads', href:'https://www.threads.com/?hl=en' },
+    { icon:'snapchat', label:'Snapchat', href:'https://accounts.snapchat.com/v2/login' },
+    { icon:'pinterest', label:'Pinterest', href:'https://in.pinterest.com/' },
+    { icon:'discord', label:'Discord', href:'https://discord.com/' },
+    { icon:'steam', label:'Steam', href:'https://store.steampowered.com/login/Sign' },
+    { icon:'reddit', label:'Reddit', href:'https://www.reddit.com/' },
+    { icon:'quora', label:'Quora', href:'https://www.quora.com/' },
+    { icon:'tiktok', label:'TikTok', href:'https://www.tiktok.com/in/about' },
+    { icon:'whatsapp', label:'WhatsApp', href:'https://api.whatsapp.com/' },
+    { icon:'facebook', label:'Facebook', href:'https://www.facebook.com/' },
+    { icon:'wechat', label:'WeChat', href:'https://www.wechat.com/' },
+    { icon:'telegram', label:'Telegram', href:'https://web.telegram.org/a/' },
+  ];
+
+  function socialIconHTML(s){
+    const glyph = svgIcon(s.icon);
+    if (s.href){
+      const isExternal = s.href.startsWith('http');
+      return `<a href="${s.href}" class="social-icon" title="${s.label}" aria-label="${s.label}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>${glyph}</a>`;
+    }
+    return `<div class="social-icon inactive" title="${s.label} (no link yet)" aria-label="${s.label}">${glyph}</div>`;
+  }
+
+  document.getElementById('socialFixed').innerHTML = fixedSocials.map(socialIconHTML).join('');
+  document.getElementById('socialTrack').innerHTML = [...dynamicSocials, ...dynamicSocials].map(socialIconHTML).join('');
+
+
+  // ---------- CONTACT FORM (mailto fallback, address kept out of visible text/markup) ----------
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const addr = ['Bhargav8517', 'gmail.com'].join('@');
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n- ${name} (${email})`);
+    window.location.href = `mailto:${addr}?subject=${subject}&body=${body}`;
+  });
+
+  // ---------- START A PROJECT (scrolls to + focuses the contact form) ----------
+  function goToContactForm(e){
+    e.preventDefault();
+    document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => document.getElementById('name').focus(), 500);
+  }
+  document.getElementById('heroStartProject').addEventListener('click', goToContactForm);
+  document.getElementById('startProjectBtn').addEventListener('click', goToContactForm);
+
+  // ---------- MOBILE NAV ----------
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', () => {
+    const open = mobileNav.style.display === 'block';
+    mobileNav.style.display = open ? 'none' : 'block';
+    navToggle.setAttribute('aria-expanded', String(!open));
+  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileNav.style.display = 'none'; navToggle.setAttribute('aria-expanded','false');
+  }));
+
+  // ---------- STICKY HEADER STATE ----------
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // ---------- SCROLL REVEAL ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- ORB PARALLAX (desktop only) ----------
+  const orb1 = document.getElementById('orb1');
+  const orb2 = document.getElementById('orb2');
+  const isTouch = matchMedia('(pointer: coarse)').matches;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!isTouch && !reduceMotion) {
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    window.addEventListener('mousemove', (e) => {
+      mx = (e.clientX / window.innerWidth - 0.5) * 40;
+      my = (e.clientY / window.innerHeight - 0.5) * 40;
+    });
+    function loop(){
+      tx += (mx - tx) * 0.04; ty += (my - ty) * 0.04;
+      orb1.style.transform = `translate(${tx}px, ${ty}px)`;
+      orb2.style.transform = `translate(${-tx}px, ${-ty}px)`;
+      requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  // ---------- PRELOADER ----------
+  const statuses = ['Calibrating reach…','Indexing 15+ brands…','Warming up the funnel…','Aligning the signal…','Ready.'];
+  const preStatus = document.getElementById('preStatus');
+  const preFill = document.getElementById('preFill');
+  const preloader = document.getElementById('preloader');
+  const heroInner = document.getElementById('heroInner');
+
+  function finishPreload(){
+    preloader.classList.add('hidden');
+    heroInner.classList.add('in');
+    document.body.style.overflow = '';
+  }
+
+  if (reduceMotion) {
+    preloader.style.display = 'none';
+    heroInner.classList.add('in');
+  } else {
+    document.body.style.overflow = 'hidden';
+    let i = 0;
+    const step = () => {
+      preStatus.textContent = statuses[i];
+      preFill.style.width = `${((i + 1) / statuses.length) * 100}%`;
+      i++;
+      if (i < statuses.length) {
+        setTimeout(step, 420);
+      } else {
+        setTimeout(finishPreload, 480);
+      }
+    };
+    step();
+    // allow skipping on click/tap
+    preloader.addEventListener('click', finishPreload);
+  }
+</script>
+
+</body>
+</html>
