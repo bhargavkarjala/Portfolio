@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Writing — Bhargav Karjala</title>
+<meta name="description" content="Notes and essays by Bhargav Karjala on content, SEO, and growth.">
+<meta name="theme-color" content="#07080C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#050506;
+    --void-soft:#0B0B0D;
+    --panel: rgba(255,255,255,0.045);
+    --panel-hover: rgba(255,255,255,0.075);
+    --border: rgba(212,175,90,0.14);
+    --border-hover: rgba(212,175,90,0.32);
+    --mist:#F5F1E6;
+    --muted: rgba(245,241,230,0.58);
+    --muted-dim: rgba(245,241,230,0.36);
+    --accent:#D4AF5A;
+    --accent-dim: rgba(212,175,90,0.32);
+    --heading-gradient: linear-gradient(100deg, #F5E3AC 0%, #C6963E 45%, #F5E3AC 100%);
+    --highlight:#E8393B;
+    --nav-bg: rgba(7,8,12,0.72);
+    --nav-bg-mobile: rgba(7,8,12,0.98);
+    --nav-shadow: none;
+    --star-color: rgba(245,241,230,0.85);
+    --star-color-2: rgba(212,175,90,0.65);
+    --star-opacity: .5;
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --max: 1200px;
+    --edge: clamp(20px, 5vw, 64px);
+  }
+
+  html[data-theme="light"]{
+    --void:#F1F4F9;
+    --void-soft:#E6EBF3;
+    --panel: rgba(10,16,28,0.045);
+    --panel-hover: rgba(10,16,28,0.09);
+    --border: rgba(30,70,130,0.16);
+    --border-hover: rgba(30,70,130,0.32);
+    --mist:#080A0E;
+    --muted: rgba(8,10,14,0.78);
+    --muted-dim: rgba(8,10,14,0.54);
+    --accent:#2E7DD6;
+    --accent-dim: rgba(46,125,214,0.26);
+    --heading-gradient: linear-gradient(100deg, #6FB0F0 0%, #1F63AC 45%, #6FB0F0 100%);
+    --highlight:#C4272B;
+    --nav-bg: rgba(241,244,249,0.82);
+    --nav-bg-mobile: rgba(241,244,249,0.98);
+    --nav-shadow: 0 4px 24px rgba(20,30,50,0.08), 0 1px 3px rgba(20,30,50,0.06);
+    --star-color: rgba(30,60,110,0.28);
+    --star-color-2: rgba(46,125,214,0.22);
+    --star-opacity: .4;
+  }
+
+  html{ transition: background-color .35s ease; scroll-behavior:smooth; }
+  body{ transition: background-color .35s ease, color .35s ease; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--void); color: var(--mist); font-family: var(--font-body);
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding-left:var(--edge); padding-right:var(--edge); position:relative; z-index:2;}
+  h1,h2,h3{font-family:var(--font-display); letter-spacing:-0.01em; font-weight:600;}
+  h1,h2{
+    background: var(--heading-gradient); background-size:220% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: heading-shine 8s ease-in-out infinite alternate;
+  }
+  @keyframes heading-shine{ from{ background-position:0% 50%; } to{ background-position:100% 50%; } }
+  .eyebrow{
+    font-family: var(--font-mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--accent); display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); }
+
+  .starfield{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1.6px 1.6px at 8% 12%, var(--star-color), transparent 100%),
+      radial-gradient(1.2px 1.2px at 22% 68%, var(--star-color-2), transparent 100%),
+      radial-gradient(1.8px 1.8px at 38% 34%, var(--star-color), transparent 100%),
+      radial-gradient(1px 1px at 54% 80%, var(--star-color-2), transparent 100%),
+      radial-gradient(1.4px 1.4px at 67% 18%, var(--star-color), transparent 100%),
+      radial-gradient(1px 1px at 78% 56%, var(--star-color-2), transparent 100%),
+      radial-gradient(1.6px 1.6px at 91% 28%, var(--star-color), transparent 100%),
+      radial-gradient(1.2px 1.2px at 12% 90%, var(--star-color-2), transparent 100%),
+      radial-gradient(1px 1px at 46% 6%, var(--star-color), transparent 100%),
+      radial-gradient(1.4px 1.4px at 85% 82%, var(--star-color-2), transparent 100%);
+    background-repeat:repeat; background-size:420px 420px; opacity:var(--star-opacity);
+    animation: twinkle 7s ease-in-out infinite alternate; transition: opacity .4s ease;
+  }
+  @keyframes twinkle{ from{ opacity: calc(var(--star-opacity) * 0.55); } to{ opacity: var(--star-opacity); } }
+
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50; padding:22px 0;
+    transition: background .3s ease, backdrop-filter .3s ease, border-color .3s ease, padding .3s ease, box-shadow .3s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.topbar.scrolled{
+    background: var(--nav-bg); backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border-bottom-color: var(--border); padding:14px 0;
+    box-shadow: var(--nav-shadow, none);
+  }
+
+  /* ===== THEME WASH (sunrise/sunset circular transition) ===== */
+  #themeWash{
+    position:fixed; inset:0; z-index:300; pointer-events:none;
+    background: radial-gradient(circle,
+      rgba(255,214,153,0.85) 0%,
+      rgba(255,163,120,0.68) 30%,
+      rgba(196,102,140,0.5) 58%,
+      rgba(120,70,130,0.28) 78%,
+      rgba(120,70,130,0) 100%);
+    clip-path: circle(0% at var(--wash-x,50%) var(--wash-y,50%));
+    opacity:0;
+  }
+  #themeWash.washing{
+    transition: clip-path .42s cubic-bezier(.32,0,.18,1), opacity .42s ease-out;
+    clip-path: circle(140% at var(--wash-x,50%) var(--wash-y,50%));
+    opacity:1;
+  }
+  #themeWash.fading{
+    transition: opacity .62s cubic-bezier(.22,1,.36,1);
+    opacity:0;
+  }
+  @media (prefers-reduced-motion: reduce){
+    #themeWash{ display:none; }
+  }
+  .topbar-inner{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family: var(--font-display); font-weight:600; font-size:17px; }
+  .brand .dot{ color: var(--accent); }
+  nav.primary-nav ul{ display:flex; gap:30px; }
+  nav.primary-nav a{ font-family: var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); transition: color .2s ease; }
+  nav.primary-nav a:hover, nav.primary-nav a.active{ color: var(--mist); }
+  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .theme-toggle{
+    width:36px; height:36px; border-radius:50%; flex-shrink:0;
+    background: var(--panel); border:1px solid var(--border); color: var(--mist);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--accent-dim); background: var(--panel-hover); transform: translateY(-2px); }
+  .theme-toggle svg{ width:16px; height:16px; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--border); color:var(--mist); font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; padding:9px 15px; border-radius:100px; cursor:pointer; }
+  #mobileNav{
+    position:absolute; top:100%; left:0; right:0;
+    background: var(--nav-bg-mobile); backdrop-filter: blur(20px);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+  }
+  #mobileNav a{ font-family: var(--font-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color: var(--muted); }
+
+  .page-head{ padding:170px 0 60px; }
+  .page-head h1{ font-size:clamp(2.4rem,5.5vw,4rem); margin-top:16px; max-width:16ch; }
+  .page-head p{ color:var(--muted); margin-top:18px; max-width:56ch; font-size:1.05rem; }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  .writing-list{ padding:20px 0 140px; display:flex; flex-direction:column; }
+  .writing-item{
+    display:grid; grid-template-columns:120px 1fr auto; align-items:center; gap:28px;
+    padding:30px 0; border-top:1px solid var(--border);
+    position:relative; overflow:hidden; isolation:isolate;
+    transition: padding-left .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .writing-item::before{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background: linear-gradient(90deg, rgba(46,125,214,0.14), rgba(46,125,214,0.04) 55%, transparent 85%);
+    transform: translateX(-100%);
+    transition: transform .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .writing-item:hover::before{ transform: translateX(0); }
+  .writing-list .writing-item:last-child{ border-bottom:1px solid var(--border); }
+  .writing-item:hover{ padding-left:14px; }
+  .writing-date{ font-family: var(--font-mono); font-size:12px; color:var(--muted-dim); letter-spacing:.04em; }
+  .writing-body h3{
+    font-family:var(--font-display); font-weight:600; font-size:1.25rem; color:var(--mist);
+    background:none; -webkit-text-fill-color:currentColor; animation:none;
+  }
+  .writing-body p{ margin-top:8px; color:var(--muted); font-size:.95rem; max-width:60ch; }
+  .writing-tag{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--accent); border:1px solid var(--border); border-radius:100px; padding:5px 12px;
+    display:inline-block; margin-top:12px;
+  }
+  .writing-arrow{
+    font-family:var(--font-mono); font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:8px; white-space:nowrap;
+    transition: color .2s ease, gap .2s ease;
+  }
+  .writing-item:hover .writing-arrow{ color:var(--accent); gap:12px; }
+
+  .empty-note{
+    padding:60px 0; text-align:center; color:var(--muted-dim);
+    font-family:var(--font-mono); font-size:13px; border-top:1px solid var(--border);
+  }
+
+  @media (max-width:700px){
+    .writing-item{ grid-template-columns:1fr; gap:10px; }
+    .writing-arrow{ justify-self:start; }
+  }
+  @media (max-width:940px){
+    nav.primary-nav{ display:none; }
+    .nav-toggle{ display:inline-block; }
+  }
+
+  footer{ border-top:1px solid var(--border); padding:32px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .footer-inner p{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
+  .footer-links{ display:flex; gap:22px; }
+  .footer-links a{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
+  .footer-links a:hover{ color: var(--mist); }
+</style>
+</head>
+<body>
+
+<div id="themeWash" aria-hidden="true"></div>
+<div class="starfield"></div>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">Bhargav Karjala<span class="dot">.</span></a>
+    <nav class="primary-nav">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="writing.html" class="active">Writing</a></li>
+        <li><a href="index.html#contact">Contact Me</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle light / dark mode"></button>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+    </div>
+  </div>
+  <nav id="mobileNav" style="display:none;">
+    <ul class="wrap" style="display:flex; flex-direction:column; gap:18px; padding-top:22px; padding-bottom:24px;">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="index.html#contact">Contact Me</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="wrap page-head reveal">
+  <div class="eyebrow">Writing</div>
+  <h1>Notes on content, SEO and growth.</h1>
+  <p>Pieces I've written, on strategy, campaigns, and what actually moves the needle. Updated whenever I've got something worth sharing.</p>
+</section>
+
+<section class="wrap writing-list" id="writingList"></section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <p>© 2026 Bhargav Karjala. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="index.html">Back to portfolio</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- THEME TOGGLE ----------
+  const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="6.6" y2="6.6"/><line x1="17.4" y1="17.4" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="6.6" y2="17.4"/><line x1="17.4" y1="6.6" x2="19.1" y2="4.9"/></svg>`;
+  const moonIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5z"/></svg>`;
+  const themeToggle = document.getElementById('themeToggle');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const themeColors = { dark: '#07080C', light: '#F4F1E9' };
+  let currentTheme = 'dark';
+  function applyTheme(theme){
+    currentTheme = theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    themeToggle.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+    if (metaTheme) metaTheme.setAttribute('content', themeColors[theme]);
+  }
+  applyTheme('dark');
+
+  const themeWash = document.getElementById('themeWash');
+  let washBusy = false;
+  themeToggle.addEventListener('click', () => {
+    const next = currentTheme === 'dark' ? 'light' : 'dark';
+    if (washBusy || !themeWash || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      applyTheme(next);
+      return;
+    }
+    washBusy = true;
+    const rect = themeToggle.getBoundingClientRect();
+    const x = ((rect.left + rect.width/2) / window.innerWidth) * 100;
+    const y = ((rect.top + rect.height/2) / window.innerHeight) * 100;
+    themeWash.style.setProperty('--wash-x', x + '%');
+    themeWash.style.setProperty('--wash-y', y + '%');
+    themeWash.classList.remove('fading');
+    void themeWash.offsetWidth;
+    themeWash.classList.add('washing');
+    setTimeout(() => { applyTheme(next); }, 200);
+    setTimeout(() => {
+      themeWash.classList.remove('washing');
+      themeWash.classList.add('fading');
+    }, 430);
+    setTimeout(() => {
+      themeWash.classList.remove('fading');
+      washBusy = false;
+    }, 1060);
+  });
+
+  // ---------- MOBILE NAV ----------
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', () => {
+    const open = mobileNav.style.display === 'block';
+    mobileNav.style.display = open ? 'none' : 'block';
+    navToggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  // ---------- STICKY HEADER ----------
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive:true });
+
+  // ---------- WRITING ENTRIES ----------
+  // Add a new piece any time by adding an object to this array.
+  // date:  short label, e.g. "Mar 2026"
+  // title: the piece's title
+  // blurb: one or two sentence summary
+  // tag:   short category label, e.g. "SEO", "Strategy", "Case study"
+  // url:   link to the full piece (Medium, LinkedIn, your own post, a PDF, etc.)
+  const writings = [
+    // {
+    //   date: "Mar 2026",
+    //   title: "Why most SEO content plans fail in month two",
+    //   blurb: "The gap between a content calendar and a content system, and why most brands never close it.",
+    //   tag: "SEO",
+    //   url: "https://example.com/your-article"
+    // },
+  ];
+
+  const listEl = document.getElementById('writingList');
+  if (writings.length === 0){
+    listEl.innerHTML = `<div class="empty-note">New writing lands here soon. Check back shortly.</div>`;
+  } else {
+    listEl.innerHTML = writings.map(w => `
+      <a class="writing-item reveal in" href="${w.url}" target="_blank" rel="noopener">
+        <div class="writing-date">${w.date}</div>
+        <div class="writing-body">
+          <h3>${w.title}</h3>
+          <p>${w.blurb}</p>
+          <span class="writing-tag">${w.tag}</span>
+        </div>
+        <div class="writing-arrow">Read →</div>
+      </a>`).join('');
+  }
+
+  // ---------- SCROLL REVEAL ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
