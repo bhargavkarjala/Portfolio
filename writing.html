@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link
+  rel="icon"
+  type="image/svg+xml"
+  id="portfolioFavicon"
+  href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080808'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia' font-size='43' font-weight='bold' fill='%23D4AF5A'%3EB.%3C/text%3E%3C/svg%3E"
+>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Writing | Read my writings </title>
@@ -615,5 +621,82 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
+<script>
+(() => {
+  "use strict";
+
+  const favicon = document.querySelector("#portfolioFavicon");
+  if (!favicon) return;
+
+  const icons = {
+    default: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#080808"/>
+        <text x="32" y="45" text-anchor="middle"
+          font-family="Georgia" font-size="43"
+          font-weight="bold" fill="#D4AF5A">B.</text>
+      </svg>
+    `,
+
+    sad: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#080808"/>
+        <circle cx="32" cy="32" r="23"
+          fill="none" stroke="#D4AF5A" stroke-width="3"/>
+        <circle cx="24" cy="27" r="3" fill="#D4AF5A"/>
+        <circle cx="40" cy="27" r="3" fill="#D4AF5A"/>
+        <path d="M22 44 Q32 32 42 44"
+          fill="none" stroke="#D4AF5A"
+          stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    `,
+
+    reading: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="14" fill="#080808"/>
+        <ellipse cx="22" cy="32" rx="12" ry="16" fill="#FFFFFF"/>
+        <ellipse cx="44" cy="32" rx="12" ry="16" fill="#FFFFFF"/>
+        <ellipse cx="26" cy="33" rx="5" ry="8" fill="#080808"/>
+        <ellipse cx="48" cy="33" rx="5" ry="8" fill="#080808"/>
+      </svg>
+    `
+  };
+
+  const normalTitle = document.title;
+  const article = document.getElementById("articleView");
+
+  function updateFavicon() {
+    const isReading = article && !article.hidden;
+
+    const mode = document.hidden
+      ? "sad"
+      : isReading
+        ? "reading"
+        : "default";
+
+    favicon.href =
+      "data:image/svg+xml," +
+      encodeURIComponent(icons[mode]);
+
+    document.title = document.hidden
+      ? "Come back bro 🥺"
+      : normalTitle;
+  }
+
+  document.addEventListener("visibilitychange", updateFavicon);
+
+  window.addEventListener("pageshow", updateFavicon);
+  window.addEventListener("hashchange", updateFavicon);
+
+  if (article) {
+    new MutationObserver(updateFavicon).observe(article, {
+      attributes: true,
+      attributeFilter: ["hidden"]
+    });
+  }
+
+  updateFavicon();
+})();
+</script>
 </body>
 </html>
