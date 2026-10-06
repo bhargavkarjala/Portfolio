@@ -14,7 +14,10 @@
 <meta name="theme-color" content="#07080C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+if((location.hash === '#privacy-policy' || new URLSearchParams(location.search).get('page') === 'privacy-policy')) document.documentElement.dataset.page = 'privacy-policy';
+</script>
 <style>
   :root{
     --void:#050506;
@@ -491,33 +494,22 @@
   .contact-extra-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-top:34px; }
 
   /* ===== FOOTER ===== */
-  footer{ border-top:1px solid var(--border); padding:32px 0; }
-  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
-  .footer-inner p{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
-  .footer-links{ display:flex; gap:22px; }
-  .footer-links a{ font-family:var(--font-mono); font-size:11.5px; color:var(--muted-dim); }
-  .footer-links a:hover{ color: var(--mist); }
-
-  .social-row{ display:flex; align-items:center; gap:24px; margin-top:26px; flex-wrap:wrap; }
-  .social-icon{
-    width:41px; height:41px; border-radius:50%; flex-shrink:0;
-    background: rgba(255,255,255,0.07); border:1px solid var(--border);
-    display:flex; align-items:center; justify-content:center;
-    color: var(--mist);
-    transition: border-color .2s ease, background .2s ease, transform .2s ease, color .2s ease;
+  footer{ border-top:1px solid var(--border); padding:30px 0 0; overflow:hidden; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:18px; }
+  .footer-inner p, .privacy-policy summary{ font-family:var(--font-body); font-size:13px; color:var(--mist); line-height:1.6; }
+  .footer-policy-link{ font-size:13px; color:var(--mist); text-decoration:underline; text-underline-offset:4px; }
+  .privacy-policy{ max-width:560px; }
+  .privacy-policy summary{ cursor:pointer; text-decoration:underline; text-underline-offset:4px; text-align:right; }
+  .privacy-policy summary:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; }
+  .privacy-copy{ padding:22px 0; }
+  .privacy-copy p{ margin-bottom:14px; }
+  .privacy-copy a{ text-decoration:underline; }
+  .footer-wordmark{ font-family:var(--font-display); font-weight:800; font-size:clamp(56px, 17vw, 250px); letter-spacing:-.065em; line-height:.85; margin-top:62px; padding-bottom:.04em; text-align:center; white-space:nowrap; background:linear-gradient(180deg, color-mix(in srgb, var(--mist) 58%, transparent), color-mix(in srgb, var(--mist) 5%, transparent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  @media(max-width:560px){
+    .privacy-policy{ width:100%; }
+    .privacy-policy summary{ text-align:left; }
+    .footer-wordmark{ margin-top:38px; }
   }
-  a.social-icon:hover{ border-color: var(--accent-dim); background: var(--accent-dim); transform: translateY(-2px); color: var(--accent); }
-  .social-icon svg{ width:20px; height:20px; }
-  .social-icon.inactive{ opacity:.48; cursor:default; }
-  .social-fixed{ display:flex; gap:14px; flex-shrink:0; }
-  .social-marquee{
-    overflow:hidden; width:195px;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
-  }
-  .social-track{ display:flex; gap:14px; width:max-content; animation: social-scroll 10s linear infinite; }
-  @keyframes social-scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
-  .social-marquee:hover .social-track{ animation-play-state:paused; }
 
   a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent); outline-offset:3px; }
 
@@ -549,6 +541,19 @@
     .reveal, .hero-inner{ opacity:1 !important; transform:none !important; transition:none !important; }
     #preloader{ display:none !important; }
   }
+  #privacyPage{ display:none; }
+  html[data-page="privacy-policy"] body > section{ display:none; }
+  html[data-page="privacy-policy"] #privacyPage{ display:block; }
+  .policy-page{ padding-top:130px; padding-bottom:80px; min-height:75vh; }
+  .policy-page .policy-content{ max-width:780px; }
+  .policy-breadcrumb{ font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-bottom:32px; }
+  .policy-breadcrumb ol{ display:flex; flex-wrap:wrap; gap:12px; list-style:none; padding:0; }
+  .policy-breadcrumb li+li:before{ content:"/"; margin-right:12px; }
+  .policy-page h1{ font-size:clamp(38px,6vw,72px); line-height:1.08; margin-bottom:20px; }
+  .policy-page h2{ font-size:23px; color:var(--accent); margin:36px 0 14px; }
+  .policy-page p{ font-family:var(--font-body); font-size:16px; line-height:1.85; color:var(--muted); margin-bottom:16px; }
+  .policy-page .date{ font-family:var(--font-mono); font-size:12px; margin-bottom:36px; }
+  .policy-page a{ color:var(--mist); text-decoration:underline; text-underline-offset:4px; }
 </style>
 </head>
 <body>
@@ -757,20 +762,27 @@
   </div>
 </section>
 
+<main id="privacyPage" class="policy-page"><div class="wrap"><div class="policy-content">
+<nav class="policy-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#home">Home</a></li><li aria-current="page">Privacy Policy</li></ol></nav>
+<h1>Privacy Policy</h1><p class="date">Last updated: 6 October 2026</p>
+<h2>Privacy statement</h2><p>This policy explains how I, Bhargav Karjala, use information you share through my portfolio or when you contact me.</p>
+<h2>Information you provide</h2><p>You may provide your name, email address and message when making an enquiry. Sharing this information is voluntary. Please share only the details needed for your enquiry.</p><p>The portfolio contact form opens your email application. Your enquiry is sent to me when you choose to send the email.</p>
+<h2>Intended use of information</h2><p>I use your contact information only to respond to your enquiry and communicate with you about it.</p>
+<h2>Website traffic insights</h2><p>I intend to use website traffic insights to understand how visitors use this portfolio and improve their experience. This may include information about pages visited, referral sources and device types. Details of any analytics tools or cookies will be added to this policy when they are introduced.</p>
+<h2>Non-disclosure of information</h2><p>I keep the contact information you share in my own records or database. I do not sell, rent or share it with other people or organisations for their own use.</p>
+<h2>Retention of information</h2><p>I keep your contact information for the purpose of handling your enquiry and related communication. You can contact me to request its deletion.</p>
+<h2>Your information and choices</h2><p>You can email me to ask about information you have shared, request a correction or deletion, or ask me to stop contacting you. Include enough detail to help me identify the relevant enquiry.</p>
+<h2>Updates to this policy</h2><p>I may update this policy as the portfolio changes. The latest version and its update date will appear on this page.</p>
+<h2>Contact</h2><p>For questions or requests about this policy or your information, email <a href="mailto:bhargav8517@gmail.com">bhargav8517@gmail.com</a>.</p>
+</div></div></main>
+
 <footer>
   <div class="wrap">
     <div class="footer-inner">
       <p>© 2026 Bhargav Karjala. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="assets/Bhargav-Resume.pdf" download="Bhargav-Resume.pdf">Resume</a>
-      </div>
+      <a class="footer-policy-link" href="#privacy-policy">Privacy Policy</a>
     </div>
-    <div class="social-row">
-      <div class="social-fixed" id="socialFixed"></div>
-      <div class="social-marquee">
-        <div class="social-track" id="socialTrack"></div>
-      </div>
-    </div>
+    <div class="footer-wordmark" aria-hidden="true">BHARGAV</div>
   </div>
 </footer>
 
@@ -906,67 +918,6 @@ const logoData = {"pi-industries": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg
     </div>`).join('');
 
   document.getElementById('arsenalTags').innerHTML = arsenal.map(a => `<span>${a}</span>`).join('');
-
-  // ---------- SOCIAL ICONS (hand-built inline SVG, no external font/image dependency) ----------
-  const ICONS = {
-    email: `<rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,6 12,13 21,6"/>`,
-    linkedin: `<rect x="3" y="3" width="18" height="18" rx="4"/><text x="12" y="16" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">in</text>`,
-    youtube: `<rect x="3" y="5" width="18" height="14" rx="4"/><polygon points="10,8.5 16,12 10,15.5" fill="currentColor" stroke="none"/>`,
-    instagram: `<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="16.5" cy="7.5" r="1" fill="currentColor" stroke="none"/>`,
-    x: `<line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>`,
-    threads: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">@</text>`,
-    snapchat: `<circle cx="12" cy="12" r="9"/><text x="12" y="15.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">SC</text>`,
-    pinterest: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">P</text>`,
-    discord: `<rect x="4" y="7" width="16" height="10" rx="5"/><circle cx="9" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.3" fill="currentColor" stroke="none"/>`,
-    steam: `<circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="15" r="2.3"/><circle cx="15" cy="9" r="1.8"/><line x1="11.2" y1="13.3" x2="13.7" y2="10.6"/>`,
-    reddit: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">r/</text>`,
-    quora: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" font-style="italic" fill="currentColor" stroke="none" font-family="Georgia,serif">Q</text>`,
-    tiktok: `<circle cx="9" cy="17" r="2.2" fill="currentColor" stroke="none"/><line x1="11.2" y1="17" x2="11.2" y2="6"/><line x1="11.2" y1="6" x2="16" y2="7.5"/>`,
-    whatsapp: `<rect x="4" y="5" width="16" height="11" rx="5"/><polygon points="8,16 8,20 12,16" fill="currentColor" stroke="none"/>`,
-    facebook: `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="Arial,sans-serif">f</text>`,
-    wechat: `<circle cx="9" cy="10" r="5"/><circle cx="16" cy="14" r="4"/>`,
-    telegram: `<polygon points="3,11 21,4 14,21 11,13" fill="currentColor" stroke="none"/>`,
-  };
-
-  function svgIcon(name){
-    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
-  }
-
-  const fixedSocials = [
-    { icon:'email', label:'Email', href:'mailto:bhargav8517@gmail.com' },
-    { icon:'linkedin', label:'LinkedIn', href:'https://www.linkedin.com/in/bhargavkarjala' },
-    { icon:'youtube', label:'YouTube', href:'https://youtu.be/xvFZjo5PgG0?si=GQvfrEdTyDG48UNg' },
-  ];
-
-  const dynamicSocials = [
-    { icon:'instagram', label:'Instagram', href:'https://www.instagram.com/p/CGh4a0iASGS/' },
-    { icon:'x', label:'X', href:'https://x.com/home' },
-    { icon:'threads', label:'Threads', href:'https://www.threads.com/?hl=en' },
-    { icon:'snapchat', label:'Snapchat', href:'https://accounts.snapchat.com/v2/login' },
-    { icon:'pinterest', label:'Pinterest', href:'https://in.pinterest.com/' },
-    { icon:'discord', label:'Discord', href:'https://discord.com/' },
-    { icon:'steam', label:'Steam', href:'https://store.steampowered.com/login/Sign' },
-    { icon:'reddit', label:'Reddit', href:'https://www.reddit.com/' },
-    { icon:'quora', label:'Quora', href:'https://www.quora.com/' },
-    { icon:'tiktok', label:'TikTok', href:'https://www.tiktok.com/in/about' },
-    { icon:'whatsapp', label:'WhatsApp', href:'https://api.whatsapp.com/' },
-    { icon:'facebook', label:'Facebook', href:'https://www.facebook.com/' },
-    { icon:'wechat', label:'WeChat', href:'https://www.wechat.com/' },
-    { icon:'telegram', label:'Telegram', href:'https://web.telegram.org/a/' },
-  ];
-
-  function socialIconHTML(s){
-    const glyph = svgIcon(s.icon);
-    if (s.href){
-      const isExternal = s.href.startsWith('http');
-      return `<a href="${s.href}" class="social-icon" title="${s.label}" aria-label="${s.label}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>${glyph}</a>`;
-    }
-    return `<div class="social-icon inactive" title="${s.label} (no link yet)" aria-label="${s.label}">${glyph}</div>`;
-  }
-
-  document.getElementById('socialFixed').innerHTML = fixedSocials.map(socialIconHTML).join('');
-  document.getElementById('socialTrack').innerHTML = [...dynamicSocials, ...dynamicSocials].map(socialIconHTML).join('');
-
 
   // ---------- CONTACT FORM (mailto fallback, address kept out of visible text/markup) ----------
   const contactForm = document.getElementById('contactForm');
@@ -1166,6 +1117,32 @@ const logoData = {"pi-industries": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg
   }
 
   updateFavicon();
+})();
+</script>
+<script>
+(function(){
+  const homeTitle = 'Bhargav, DGM';
+  const description = document.querySelector('meta[name="description"]');
+  const homeDescription = description.content;
+  function renderPage(){
+    const policy = location.hash === '#privacy-policy' || (!location.hash && new URLSearchParams(location.search).get('page') === 'privacy-policy');
+    document.documentElement.dataset.page = policy ? 'privacy-policy' : 'home';
+    document.title = policy ? 'Privacy Policy | Bhargav Karjala' : homeTitle;
+    description.content = policy ? 'How Bhargav Karjala uses contact information and portfolio traffic insights.' : homeDescription;
+    if(policy){
+      window.scrollTo(0,0);
+      const heading = document.querySelector('#privacyPage h1');
+      heading.setAttribute('tabindex','-1');
+      heading.focus({preventScroll:true});
+    }
+  }
+  window.addEventListener('hashchange', renderPage);
+  document.querySelector('.footer-policy-link').addEventListener('click', function(event){
+    event.preventDefault();
+    if(location.hash === '#privacy-policy') renderPage();
+    else location.hash = 'privacy-policy';
+  });
+  renderPage();
 })();
 </script>
 </body>
